@@ -1,0 +1,17 @@
+---
+# reference: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+name: "Documentation"
+description: "I want to improve the documentation."
+title: "[Documentation] "
+labels: [
+  "documentation"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please describe the issue, as detailed as possible
+      placeholder: Short and explicit description of your issue...
+    validations:
+      required: true

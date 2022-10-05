@@ -1,0 +1,16 @@
+---
+# reference: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+name: "Question"
+description: "I want to ask a question."
+title: "[Question] "
+labels: [
+  "question"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Question"
+      description: Please ask your question below. It is recommended to give some background and describe the topic as detailed as possible
+    validations:
+      required: true
