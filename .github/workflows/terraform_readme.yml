@@ -1,0 +1,19 @@
+---
+name: terraform_readme
+
+on:
+  workflow_call:
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate README
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
