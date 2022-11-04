@@ -4,6 +4,9 @@ name: release
 on:
   workflow_call:
     inputs:
+      readme:
+        required: false
+        type: string
       files:
         required: false
         type: string
@@ -32,6 +35,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
+
+      - name: Generete README
+        if: ${{ inputs.readme }} == 'terraform'
+        uses: terraform-docs/gh-actions@v1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
 
       - name: update and push due to new release
         uses: github-actions-x/commit@v2.9
