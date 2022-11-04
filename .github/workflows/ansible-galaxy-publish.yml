@@ -3,6 +3,10 @@ name: Publish collection to Ansible Galaxy
 
 on:
   workflow_call:
+    secrets:
+      GALAXY_API_KEY:
+        description: 'The API-key to publish to Ansible Galaxy'
+        required: true
 
 jobs:
   deploy_to_galaxy:
