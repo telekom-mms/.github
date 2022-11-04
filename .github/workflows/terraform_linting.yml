@@ -1,0 +1,26 @@
+---
+name: terraform_linting
+
+on:
+  workflow_call:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Format
+        id: fmt
+        run: terraform fmt -recursive -check
+
+      - name: Init
+        run: terraform init
+
+      - name: Validate
+        id: validate
+        run: terraform validate -no-color
