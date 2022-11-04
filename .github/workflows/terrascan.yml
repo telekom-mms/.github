@@ -1,0 +1,32 @@
+---
+name: terrascan
+
+on:
+  workflow_call:
+    inputs:
+      iac_type:
+        required: true
+        type: string
+        default: terraform
+      policy_type:
+        required: false
+        type: string
+        default: all
+      skip_rules:
+        required: false
+        type: string
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Terrascan
+        uses: tenable/terrascan-action@v1
+        with:
+          iac_type: ${{ inputs.iac_type }}
+          policy_type: ${{ inputs.policy_type }}
+          verbose: true
+          skip_rules: ${{ inputs.skip_rules }}

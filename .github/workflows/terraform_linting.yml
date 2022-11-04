@@ -11,16 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get Terraform
-        uses: hashicorp/setup-terraform@v2
+      - name: check format
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: .
 
-      - name: Format
-        id: fmt
-        run: terraform fmt -recursive -check
-
-      - name: Init
-        run: terraform init
-
-      - name: Validate
-        id: validate
-        run: terraform validate -no-color
+      - name: validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: .
