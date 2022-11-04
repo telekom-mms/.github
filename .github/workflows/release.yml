@@ -42,7 +42,6 @@ jobs:
         with:
           working-dir: .
           output-file: README.md
-          output-method: inject
 
       - name: update and push due to new release
         uses: github-actions-x/commit@v2.9
