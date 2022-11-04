@@ -6,7 +6,7 @@ on:
     inputs:
       files:
         required: false
-        type: array
+        type: string
 
 jobs:
   release:
