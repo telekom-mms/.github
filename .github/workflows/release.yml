@@ -3,9 +3,10 @@ name: release
 
 on:
   workflow_call:
-
-env:
-  RELEASE_FILES: ''
+    inputs:
+      files:
+        required: false
+        type: array
 
 jobs:
   release:
@@ -39,7 +40,7 @@ jobs:
           push-branch: 'main'
           commit-message: 'update due to new release'
           force-add: 'true'
-          files: CHANGELOG.md ${{ env.RELEASE_FILES }}
+          files: CHANGELOG.md ${{ inputs.files }}
           name: T-Systems MMS
           email: frage@t-systems-mms.com
 
