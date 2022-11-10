@@ -8,6 +8,7 @@ on:
         required: true
         type: string
         default: terraform
+        description: e.g. helm, k8s, kustomize, terraform - to see all the acutally supported types look at https://github.com/tenable/terrascan-action#iac_type
       policy_type:
         required: false
         type: string
