@@ -1,0 +1,34 @@
+---
+name: terrascan
+
+on:
+  workflow_call:
+    inputs:
+      iac_type:
+        required: true
+        type: string
+        default: terraform
+        description: e.g. helm, k8s, kustomize, terraform - to see all supported types look at https://github.com/tenable/terrascan-action#iac_type
+      policy_type:
+        required: false
+        type: string
+        default: all
+        description: e.g. all, aws, azure, gcp, github, k8s - to see all supported types look at https://github.com/tenable/terrascan-action#policy_type
+      skip_rules:
+        required: false
+        type: string
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Terrascan
+        uses: tenable/terrascan-action@v1
+        with:
+          iac_type: ${{ inputs.iac_type }}
+          policy_type: ${{ inputs.policy_type }}
+          verbose: true
+          skip_rules: ${{ inputs.skip_rules }}
