@@ -13,7 +13,7 @@ on:
         required: false
         type: string
         default: all
-        description: e.g. all, aws, azure, gcp, github, k8s - to see all the acutally supported types look at https://github.com/tenable/terrascan-action#policy_type
+        description: e.g. all, aws, azure, gcp, github, k8s - to see all supported types look at https://github.com/tenable/terrascan-action#policy_type
       skip_rules:
         required: false
         type: string
