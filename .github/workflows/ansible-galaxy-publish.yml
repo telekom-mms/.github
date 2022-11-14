@@ -28,11 +28,9 @@ jobs:
           ref: master
 
       - name: update galaxy.yml with new version
-        uses: microsoft/variable-substitution@v1
+        uses: mikefarah/yq@v4.30.2
         with:
-          files: 'galaxy.yml'
-        env:
-          version: "${{ github.event.release.tag_name }}"
+          cmd: yq -i '.version = "${{ github.event.release.tag_name }}"' 'galaxy.yml'
 
       - name: push galaxy.yml
         uses: github-actions-x/commit@v2.9
