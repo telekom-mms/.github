@@ -28,7 +28,7 @@ jobs:
           ref: master
 
       - name: update galaxy.yml with new version
-        uses: mikefarah/yq@v4.30.2
+        uses: mikefarah/yq@v4.30.3
         with:
           cmd: yq -i '.version = "${{ github.event.release.tag_name }}"' 'galaxy.yml'
 
