@@ -1,0 +1,29 @@
+---
+name: terratest
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+          check-latest: true
+
+      - name: Prepare Test Setup
+        run: cat examples/min_main.tf | sed 's/\<source\>.*/source = "..\/"/g' > tests/main.tf
+        working-directory: .
+
+      - name: Run Go Tests
+        run: go test -run Test$PACKAGE
+        working-directory: .github/tests/terratest
