@@ -3,6 +3,26 @@ name: terratest
 
 on:
   workflow_call:
+    inputs:
+      work_dir:
+        description: name of the directory where the action is located
+        required: true
+        type: string
+        default: ./testaction
+      tool:
+        description: name of the tool to use e.g. terratest
+        required: true
+        type: string
+        default: terratest
+      test:
+        description: name of the test to run e.g. azure
+        type: string
+        required: true
+      debug:
+        description: should debug mode be enabled
+        required: false
+        type: string
+        default: false
 
 jobs:
   test:
@@ -24,6 +44,17 @@ jobs:
         run: cat examples/min_main.tf | sed 's/\<source\>.*/source = "..\/"/g' > tests/main.tf
         working-directory: .
 
-      - name: Run Go Tests
-        run: go test -run Test$PACKAGE
-        working-directory: .github/tests/terratest
+      - name: Checkout Github Action
+        uses: actions/checkout@v3
+        with:
+          repository: T-Systems-MMS/test-action
+          ref: main
+          path: ./testaction
+
+      - name: Run Test
+        uses: ./testaction
+        with:
+          work_dir: ${{ inputs.work_dir }}
+          tool: ${{ inputs.tool }}
+          test: ${{ inputs.test }}
+          debug: ${{ inputs.debug }}
