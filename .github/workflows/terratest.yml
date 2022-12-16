@@ -8,12 +8,7 @@ on:
         description: name of the directory where the action is located
         required: true
         type: string
-        default: ./testaction
-      tool:
-        description: name of the tool to use e.g. terratest
-        required: true
-        type: string
-        default: terratest
+        default: ./terratest-action
       test:
         description: name of the test to run e.g. azure
         type: string
@@ -47,14 +42,13 @@ jobs:
       - name: Checkout Github Action
         uses: actions/checkout@v3
         with:
-          repository: T-Systems-MMS/test-action
+          repository: T-Systems-MMS/terratest-action
           ref: main
-          path: ./testaction
+          path: ./terratest-action
 
       - name: Run Test
-        uses: ./testaction
+        uses: ./terratest-action
         with:
           work_dir: ${{ inputs.work_dir }}
-          tool: ${{ inputs.tool }}
           test: ${{ inputs.test }}
           debug: ${{ inputs.debug }}
