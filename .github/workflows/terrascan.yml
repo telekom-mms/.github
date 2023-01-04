@@ -14,9 +14,12 @@ on:
         type: string
         default: all
         description: e.g. all, aws, azure, gcp, github, k8s - to see all supported types look at https://github.com/tenable/terrascan-action#policy_type
-      skip_rules:
+      non_recursive:
         required: false
-        type: string
+        type: boolean
+        default: false
+        description: do not scan directories and modules recursively
+
 
 jobs:
   scan:
@@ -30,5 +33,5 @@ jobs:
         with:
           iac_type: ${{ inputs.iac_type }}
           policy_type: ${{ inputs.policy_type }}
+          non_recursive: ${{ inputs.non_recursive }}
           verbose: true
-          skip_rules: ${{ inputs.skip_rules }}
