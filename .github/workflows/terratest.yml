@@ -13,15 +13,17 @@ on:
         description: name of the test to run e.g. azure
         type: string
         required: true
-      debug:
-        description: should debug mode be enabled
-        required: false
-        type: string
-        default: false
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        example:
+          - min
+          - full
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -35,8 +37,8 @@ jobs:
           go-version: 1.19
           check-latest: true
 
-      - name: Prepare Test Setup
-        run: cat examples/min_main.tf | sed 's/\<source\>.*/source = "..\/"/g' > tests/main.tf
+      - name: Prepare ${{ matrix.example }} Test Setup
+        run: cat examples/${{ matrix.example }}_main.tf | sed 's/\<source\>.*/source = "..\/"/g' > tests/main.tf
         working-directory: .
 
       - name: Checkout Github Action
@@ -45,10 +47,11 @@ jobs:
           repository: T-Systems-MMS/terratest-action
           ref: main
           path: ./terratest-action
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Run Test
+      - name: Run Test for ${{ matrix.example }} Setup
         uses: ./terratest-action
         with:
           work_dir: ${{ inputs.work_dir }}
           test: ${{ inputs.test }}
-          debug: ${{ inputs.debug }}
