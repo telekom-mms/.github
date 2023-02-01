@@ -30,6 +30,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false # disable wrap of subsequent calls - like debug mode
 
       - name: Setup Go
         uses: actions/setup-go@v3
