@@ -4,11 +4,6 @@ name: terratest
 on:
   workflow_call:
     inputs:
-      work_dir:
-        description: name of the directory where the action is located
-        required: true
-        type: string
-        default: ./terratest-action
       test:
         description: name of the test to run e.g. azure
         type: string
@@ -55,5 +50,4 @@ jobs:
       - name: Run Test for ${{ matrix.example }} Setup
         uses: ./terratest-action
         with:
-          work_dir: ${{ inputs.work_dir }}
-          test: ${{ inputs.test }}
+          test: azure
