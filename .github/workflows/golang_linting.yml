@@ -1,0 +1,26 @@
+---
+name: golang_linting
+
+on:
+  workflow_call:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+          check-latest: true
+
+      - name: Get needed modules
+        run: go mod tidy
+
+      - name: lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          skip-cache: true
