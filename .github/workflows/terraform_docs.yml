@@ -16,3 +16,9 @@ jobs:
         with:
           working-dir: .
           output-file: README.md
+
+      - name: upload readme
+        uses: actions/upload-artifact@v2
+        with:
+          name: README.md
+          path: ./README.md
