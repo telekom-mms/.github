@@ -1,0 +1,18 @@
+---
+name: terraform_docs
+
+on:
+  workflow_call:
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    name: create release draft
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate readme
+        uses: terraform-docs/gh-actions@v1
+        with:
+          working-dir: .
+          output-file: README.md
