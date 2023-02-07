@@ -34,7 +34,7 @@ jobs:
           future_release: ${{ steps.version.outputs.next-version }}
 
       - name: download files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.files }}
         if: ${{ inputs.files != '' }}
