@@ -37,7 +37,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ inputs.files }}
-        if: ${{ inputs.files != ''}}
+        if: ${{ inputs.files != '' }}
 
       - name: update and push due to new release
         uses: github-actions-x/commit@v2.9
@@ -46,7 +46,7 @@ jobs:
           push-branch: 'main'
           commit-message: 'update due to new release'
           force-add: 'true'
-          files: CHANGELOG.md ${{ inputs.files }}
+          files: CHANGELOG.md ${{ inputs.files }} # empty string if not set
           name: T-Systems MMS
           email: frage@t-systems-mms.com
 
