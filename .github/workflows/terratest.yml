@@ -51,7 +51,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        if: ${{ inputs.test }} == azure
+        if: ${{ inputs.test == 'azure' }}
 
       - name: Run Test for ${{ matrix.example }} Setup
         uses: ./terratest-action
