@@ -1,8 +1,12 @@
 ---
-name: terraform_release
+name: release
 
 on:
   workflow_call:
+    inputs:
+      files:
+        required: false
+        type: string
 
 jobs:
   release:
@@ -29,11 +33,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
 
-      - name: Generate readme
-        uses: terraform-docs/gh-actions@v1
+      - name: download files
+        uses: actions/download-artifact@v2
         with:
-          working-dir: .
-          output-file: README.md
+          name: ${{ inputs.files }}
+        if: ${{ inputs.files != ''}}
 
       - name: update and push due to new release
         uses: github-actions-x/commit@v2.9
@@ -42,7 +46,7 @@ jobs:
           push-branch: 'main'
           commit-message: 'update due to new release'
           force-add: 'true'
-          files: CHANGELOG.md README.md
+          files: CHANGELOG.md ${{ inputs.files }}
           name: T-Systems MMS
           email: frage@t-systems-mms.com
 
