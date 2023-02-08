@@ -46,7 +46,7 @@ Linting of Go code.
 
 It should on push and pull_request.
 
-The action setup Go, install needed modules and lint the code.
+The action sets up Go, installs needed modules and lints the code.
 
 #### Inputs
 
