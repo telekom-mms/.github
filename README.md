@@ -126,7 +126,7 @@ jobs:
 
 #### Description
 
-Linting of Terraform code.
+Lint Terraform code.
 
 It should on push and pull_request.
 
