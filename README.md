@@ -128,7 +128,7 @@ jobs:
 
 Lint Terraform code.
 
-It should on push and pull_request.
+It should run on `push` and `pull_request`.
 
 The action lint and validate the code.
 
