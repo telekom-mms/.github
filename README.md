@@ -44,7 +44,7 @@ jobs:
 
 Linting of Go code.
 
-It should on push and pull_request.
+It should run on `push` and `pull_request`.
 
 The action sets up Go, installs needed modules and lints the code.
 
