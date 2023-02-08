@@ -192,7 +192,7 @@ The action sets up Go, logs into to your hosting platform if needed, prepares th
 
 | secrets           | description                                                              | required |
 | ----------------- | ------------------------------------------------------------------------ | -------- |
-| AZURE_CREDENTIALS | Credentials for az login, created by @rndmh3ro as an Organisation secret | true     |
+| AZURE_CREDENTIALS | Credentials for az login, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories | true     |
 
 | inputs | description                                          | type   | required |
 | ------ | -----------------------------------------------------| ------ | -------- |
