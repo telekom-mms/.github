@@ -42,7 +42,7 @@ jobs:
 
 #### Description
 
-Linting of Go code.
+Linting Golang code.
 
 It should run on `push` and `pull_request`.
 
