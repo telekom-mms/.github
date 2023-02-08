@@ -134,6 +134,8 @@ The action lint and validate the code.
 
 #### Inputs
 
+none
+
 #### Example Usage
 
 ``` yaml
