@@ -152,7 +152,7 @@ jobs:
 
 Detect compliance and security violations across Infrastructure as Code (IaC). For further information see [terrascan](https://runterrascan.io/docs/).
 
-It should run on pull_request.
+It should run on `pull_request`.
 
 #### Inputs
 
