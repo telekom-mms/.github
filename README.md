@@ -159,7 +159,7 @@ It should run on pull_request.
 | inputs        | description                                                                                                                                                                               | type    | default   | required |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------- | -------- |
 | iac_type      | type of code that should be checked, e.g. helm, k8s, kustomize, terraform - to see all supported types look at [terrascan#iac_type](https://github.com/tenable/terrascan-action#iac_type) | string  | terraform | true     |
-| policy_type   | which policies should be proved, e.g. all, aws, azure, gcp, github, k8s - to see all supported types look at https://github.com/tenable/terrascan-action#policy_type                      | string  | all       | false    |
+| policy_type   | which policies should be tested, e.g. all, aws, azure, gcp, github, k8s - to see all supported types look at https://github.com/tenable/terrascan-action#policy_type                      | string  | all       | false    |
 | non_recursive | directories and modules shoudl be scan recursively                                                                                                                                        | boolean | false     | false    |
 
 #### Example Usage
