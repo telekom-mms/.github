@@ -53,12 +53,12 @@ The action sets up Go, installs needed modules and lints the code.
 #### Example Usage
 
 ``` yaml
-name: linting
+name: Linting
 
 on: [push, pull_request]
 
 jobs:
-  call-linting:
+  linting:
     uses: T-Systems-MMS/.github/.github/workflows/golang_linting.yml@main
 ```
 
@@ -81,7 +81,7 @@ The action builds a new tag and updates the changelog. Furthermore it adds defin
 #### Example Usage
 
 ``` yaml
-name: release
+name: Release
 
 on:
   push:
@@ -89,7 +89,7 @@ on:
       - main
 
 jobs:
-  call-release:
+  release:
     uses: T-Systems-MMS/.github/.github/workflows/release.yml@main
 ```
 
@@ -106,7 +106,7 @@ It should only run on push to master/main branch.
 #### Example Usage
 
 ``` yaml
-name: release
+name: Update Docs
 
 on:
   push:
@@ -114,9 +114,10 @@ on:
       - main
 
 jobs:
-  call-readme:
+  readme:
+
     uses: T-Systems-MMS/.github/.github/workflows/terraform_docs.yml@main
-  call-release:
+  release:
     uses: T-Systems-MMS/.github/.github/workflows/release.yml@main
     with:
       files: README.md
@@ -136,12 +137,12 @@ none
 #### Example Usage
 
 ``` yaml
-name: linting
+name: Linting
 
 on: [push, pull_request]
 
 jobs:
-  call-linting:
+  linting:
     uses: T-Systems-MMS/.github/.github/workflows/terraform_linting.yml@main
 ```
 
@@ -164,12 +165,12 @@ It should run on `pull_request`.
 #### Example Usage
 
 ``` yaml
-name: scan
+name: Scan
 
 on: [pull_request]
 
 jobs:
-  call-scan:
+  scan:
     uses: T-Systems-MMS/.github/.github/workflows/terrascan.yml@main
     with:
       iac_type: terraform
@@ -200,12 +201,12 @@ The action sets up Go, logs into to your hosting platform if needed, prepares th
 #### Example Usage
 
 ``` yaml
-name: test
+name: Test
 
 on: [pull_request]
 
 jobs:
-  call-test:
+  test:
     uses: T-Systems-MMS/.github/.github/workflows/terratest.yml@main
     with:
       test: azure
