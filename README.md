@@ -68,7 +68,7 @@ jobs:
 
 Publishes a new Release on GitHub.
 
-It should only run on push to master/main branch.
+It should only run on `push` to master/main branch.
 
 The action builds a new tag and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
 
