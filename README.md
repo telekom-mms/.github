@@ -97,7 +97,7 @@ jobs:
 
 #### Description
 
-Creates the README.md from terraform code. For custom configuration create a `.terraform-docs.yml` in your repository. For further configuration options see [terraform-docs](https://terraform-docs.io/user-guide/configuration/)
+Creates the README.md from terraform code. For custom configuration create a `.terraform-docs.yml` in your repository. For further configuration options see [terraform-docs](https://terraform-docs.io/user-guide/configuration/).
 
 It should only run on push to master/main branch.
 
