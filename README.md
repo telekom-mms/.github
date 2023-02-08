@@ -185,9 +185,12 @@ The action sets up Go, logs into to your hosting platform if needed, prepares th
 
 #### Inputs
 
-| secrets           | description                                                              | required |
-| ----------------- | ------------------------------------------------------------------------ | -------- |
-| AZURE_CREDENTIALS | Credentials for az login, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories | true     |
+| secrets               | description                                                                                                                      | required |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| AZURE_CLIENT_SECRET   | password of the azure ad application, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories       | false    |
+| AZURE_CLIENT_ID       | application_id of the azure ad application, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories | false    |
+| AZURE_SUBSCRIPTION_ID | azure subscription id, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories                      | false    |
+| AZURE_TENANT_ID       | azure tenant id, created by @rndmh3ro as an Organisation secret, scoped to `terraform-*` repositories                            | false    |
 
 | inputs | description                                          | type   | required |
 | ------ | -----------------------------------------------------| ------ | -------- |
@@ -206,5 +209,8 @@ jobs:
     with:
       test: azure
     secrets:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 ```
