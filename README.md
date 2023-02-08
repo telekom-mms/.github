@@ -115,12 +115,7 @@ on:
 
 jobs:
   readme:
-
     uses: T-Systems-MMS/.github/.github/workflows/terraform_docs.yml@main
-  release:
-    uses: T-Systems-MMS/.github/.github/workflows/release.yml@main
-    with:
-      files: README.md
 ```
 
 ### Terraform Linting
