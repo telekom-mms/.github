@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      max-parallel: 1 # to enforce unique terraform resources
       matrix:
         example:
           - min
@@ -63,9 +64,8 @@ jobs:
       - name: Run Test for ${{ matrix.example }} Setup
         uses: ./terratest-action
         with:
-          test: ${{ inputs.test }}
-        env:
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          test:  ${{ inputs.test }}
+          azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
+          azure_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
