@@ -3,6 +3,10 @@ name: terratest
 
 on:
   workflow_call:
+    secrets:
+      AZURE_CREDENTIALS:
+        description: 'Credentials for az login'
+        required: false
     inputs:
       test:
         description: name of the test to run e.g. azure
