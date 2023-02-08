@@ -1,5 +1,5 @@
 ---
-name: terraform_docs
+name: Terraform Docs
 
 on:
   workflow_call:

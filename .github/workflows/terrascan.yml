@@ -1,5 +1,5 @@
 ---
-name: terrascan
+name: Terrascan
 
 on:
   workflow_call:

@@ -1,5 +1,5 @@
 ---
-name: golang_linting
+name: Golang Linting
 
 on:
   workflow_call:

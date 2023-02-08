@@ -1,5 +1,5 @@
 ---
-name: terratest
+name: Terratest
 
 on:
   workflow_call:
