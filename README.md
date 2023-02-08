@@ -184,7 +184,7 @@ jobs:
 
 Automated Tests for your infrastructure code.
 
-It should run on pull_request.
+It should run on `pull_request`.
 
 The action setup Go, make login to your hosting plattform if needed, prepares the test setup and run the tests. For further infomation about the used action for the tests see [terratest-action](https://github.com/T-Systems-MMS/terratest-action).
 
