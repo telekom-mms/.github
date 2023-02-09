@@ -32,7 +32,6 @@ on:
 jobs:
   deploy:
     uses: T-Systems-MMS/.github/.github/workflows/github.yml@main
-    secrets:
 ```
 
 ### Publish collection to Ansible Galaxy
