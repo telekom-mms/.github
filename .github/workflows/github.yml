@@ -1,0 +1,20 @@
+---
+name: Github Repository Settings
+
+on:
+  workflow_call:
+
+env:
+  GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
+
+jobs:
+  github:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: gh repo edit
+        run: |
+          cat .github/settings | grep -i repo | awk -v repo=${GITHUB_REPOSITORY} '{printf("gh repo edit %s --%s %s\n", repo, $2, $3)}' > gh_repo_cmd
+          cat gh_repo_cmd | while read repo_cmd; do $repo_cmd; done

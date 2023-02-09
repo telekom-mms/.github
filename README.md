@@ -5,6 +5,36 @@ The repository uses a [functionality of GitHub](https://docs.github.com/en/commu
 
 ## Workflow Actions
 
+### Github Repository Settings
+
+#### Description
+
+Change Repository settings.
+
+It should run if settings definition change and daily to ensure defined settings.
+
+This action changes the repository settings over gh cli with the settings defined in `.github/settings`.
+
+#### Inputs
+
+#### Example Usage
+
+``` yaml
+name: Publish collection to Ansible Galaxy
+
+on:
+  schedule:
+    - cron: '00 10 * * *'
+  push:
+    paths:
+      - '.github/settings'
+
+jobs:
+  deploy:
+    uses: T-Systems-MMS/.github/.github/workflows/github.yml@main
+    secrets:
+```
+
 ### Publish collection to Ansible Galaxy
 
 #### Description
