@@ -11,16 +11,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get file changes
-        id: get_file_changes
-        uses: trilom/file-changes-action@v1.2
-        with:
-          output: ','
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: mkrakowitzer/actions-ghsettings@v1.3
-        if: steps.get_file_changes.outputs.files
         with:
-          files: ${{ steps.get_file_changes.outputs.files }}
+          files: .github/settings.yaml
         env:
           MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: T-Systems-MMS
