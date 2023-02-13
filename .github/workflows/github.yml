@@ -20,4 +20,4 @@ jobs:
           files: .github/settings.yaml
         env:
           MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ORG: ${{ inputs.repository}}
+          GITHUB_ORG: T-Systems-MMS
