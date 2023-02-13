@@ -3,10 +3,6 @@ name: Github Repository Settings
 
 on:
   workflow_call:
-    inputs:
-      repository:
-        required: true
-        type: string
 
 jobs:
   github:
