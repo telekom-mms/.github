@@ -20,4 +20,4 @@ jobs:
       - name: get and set repository settings
         run: |
           yq e '.repo' .github/settings.yaml > gh_repo
-          cat gh_repo | while read repo_cmd; do echo $repo_cmd | tr -d ':' | awk -v repo=${GITHUB_REPOSITORY} '{printf("gh repo edit %s --%s %s\n", repo, $1, $2)}'; done
+          cat gh_repo | while read repo_cmd; do echo $(echo "gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd" | tr -d :); done
