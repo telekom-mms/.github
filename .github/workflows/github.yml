@@ -16,17 +16,11 @@ jobs:
         uses: trilom/file-changes-action@v1.2
         with:
           output: ','
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: mkrakowitzer/actions-ghsettings@v1.3
-        if: steps.get_file_changes.outputs.files_modified
+        if: steps.get_file_changes.outputs.files
         with:
-          files: ${{ steps.get_file_changes.outputs.files_modified }}
-        env:
-          MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ORG: T-Systems-MMS
-      - uses: mkrakowitzer/actions-ghsettings@v1.3
-        if: steps.get_file_changes.outputs.files_added
-        with:
-          files: ${{ steps.get_file_changes.outputs.files_added }}
+          files: ${{ steps.get_file_changes.outputs.files }}
         env:
           MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: T-Systems-MMS
