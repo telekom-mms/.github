@@ -3,6 +3,10 @@ name: Github Repository Settings
 
 on:
   workflow_call:
+    inputs:
+      repository:
+        required: true
+        type: string
 
 jobs:
   github:
@@ -16,4 +20,4 @@ jobs:
           files: .github/settings.yaml
         env:
           MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ORG: ${{ GITHUB_REPOSITORY }}
+          GITHUB_ORG: ${{ inputs.repository}}
