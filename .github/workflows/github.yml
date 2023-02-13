@@ -27,4 +27,5 @@ jobs:
         with:
           files: ${{ steps.get_file_changes.outputs.files_added }}
         env:
+          MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: T-Systems-MMS
