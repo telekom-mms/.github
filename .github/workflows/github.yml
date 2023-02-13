@@ -13,7 +13,7 @@ jobs:
 
       - name: Get file changes
         id: get_file_changes
-        uses: trilom/file-changes-action@v1.2.3
+        uses: trilom/file-changes-action@v1.2
         with:
           output: ','
       - uses: mkrakowitzer/actions-ghsettings@v1.3
@@ -21,6 +21,7 @@ jobs:
         with:
           files: ${{ steps.get_file_changes.outputs.files_modified }}
         env:
+          MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: T-Systems-MMS
       - uses: mkrakowitzer/actions-ghsettings@v1.3
         if: steps.get_file_changes.outputs.files_added
