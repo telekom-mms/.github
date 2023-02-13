@@ -13,7 +13,7 @@ Change Repository settings.
 
 It should run if settings definition change and daily to ensure defined settings.
 
-This action changes the repository settings over gh cli with the settings defined in `.github/settings`.
+This action changes the repository settings over gh cli with the settings defined in `.github/settings.yaml`.
 
 #### Inputs
 

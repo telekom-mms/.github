@@ -4,6 +4,9 @@ name: Github Repository Settings
 on:
   workflow_call:
 
+env:
+  GITHUB_REPOSITORY: ${{ github.repository }}
+
 jobs:
   github:
     runs-on: ubuntu-latest
@@ -11,9 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - uses: mkrakowitzer/actions-ghsettings@v1.3
-        with:
-          files: .github/settings.yaml
-        env:
-          MU_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ORG: T-Systems-MMS
+      - name: Set up yq
+        uses: frenck/action-setup-yq@v1
+
+      - name: get and set repository settings
+        run: |
+          yq e '.repo' .github/settings.yaml > gh_repo
+          cat gh_repo | while read repo_cmd; do echo $repo_cmd | tr -d ':' | awk -v repo=${GITHUB_REPOSITORY} '{printf("gh repo edit %s --%s %s\n", repo, $1, $2)}'; done
