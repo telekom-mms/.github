@@ -14,6 +14,7 @@ Change Repository settings.
 It should run if settings definition change and daily to ensure defined settings.
 
 This action changes the repository settings over gh cli with the settings defined in `.github/settings.yaml`.
+The action supports the [gh repo edit](https://cli.github.com/manual/gh_repo_edit) commands.
 
 #### Inputs
 
@@ -32,6 +33,19 @@ on:
 jobs:
   deploy:
     uses: T-Systems-MMS/.github/.github/workflows/github.yml@main
+```
+
+##### `.github/settings.yaml`
+
+The parameters are stored as a `key: value` pair according to the CLI command, e.g. gh repo edit T-Systems-MMS/terraform-azurerm-container --add-topic terraform azure azurerm_container_registry.
+
+``` yaml
+repo:
+  add-topic: terraform azure azurerm_container_registry
+  default-branch: main
+  delete-branch-on-merge: true
+  description: A Terraform module that manages the azurerm container resources.
+  visibility: public
 ```
 
 ### Publish collection to Ansible Galaxy
