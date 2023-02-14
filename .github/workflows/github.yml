@@ -3,6 +3,10 @@ name: Github Repository Settings
 
 on:
   workflow_call:
+    secrets:
+      GH_CLI_TOKEN:
+        description: 'PSA Token for gh cli access.'
+        required: false
 
 env:
   GITHUB_REPOSITORY: ${{ github.repository }}
@@ -17,7 +21,12 @@ jobs:
       - name: Set up yq
         uses: frenck/action-setup-yq@v1
 
-      - name: get and set repository settings
+      - name: gh repo edit
         run: |
-          yq e '.repo' .github/settings.yaml > gh_repo
-          cat gh_repo | tr -d : | while read repo_cmd; do gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd; done
+          # add-topic must be splittet into one command for each topic
+          yq '.repo | with_entries(select(.key != "add-topic"))' .github/settings.yaml | tr -d : >  gh_repo
+          yq '.repo | with_entries(select(.key == "add-topic")) | to_entries | .[].value[] | sub("(.*)", "add-topic ${0}")' .github/settings.yaml >>  gh_repo
+          # get and set settings
+          cat gh_repo | while read repo_cmd; do echo "gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd" && gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd; done
+        env:
+          GH_TOKEN: ${{ secrets.GH_CLI_TOKEN }}
