@@ -27,6 +27,6 @@ jobs:
           yq '.repo | with_entries(select(.key != "add-topic"))' .github/settings.yaml | tr -d : >  gh_repo
           yq '.repo | with_entries(select(.key == "add-topic")) | to_entries | .[].value[] | sub("(.*)", "add-topic ${0}")' .github/settings.yaml >>  gh_repo
           # get and set settings
-          cat gh_repo | while read repo_cmd; do gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd; done
+          cat gh_repo | sed 's/\"/\\"/g' | while read repo_cmd; do gh repo edit ${GITHUB_REPOSITORY} --$repo_cmd; done
         env:
           GH_TOKEN: ${{ secrets.GH_CLI_TOKEN }}
