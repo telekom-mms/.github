@@ -30,7 +30,7 @@ jobs:
           yq '.repo | del(.add-topic)' ${SETTINGS} | tr -d : >  gh_repo
           yq '(.repo.add-topic).[] | sub("(.*)", "add-topic ${0}")' ${SETTINGS} >>  gh_repo
           # get and set settings
-          cat gh_repo | while read repo_cmd; do gh repo edit --$repo_cmd; done
+          cat gh_repo | while read repo_cmd; do echo $repo_cmd && gh repo edit --$repo_cmd; done
         env:
           SETTINGS: ${{ inputs.settings }}
           GH_TOKEN: ${{ secrets.GH_CLI_TOKEN }}
