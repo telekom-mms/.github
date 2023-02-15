@@ -42,7 +42,7 @@ jobs:
       - name: update and push due to new release
         uses: github-actions-x/commit@v2.9
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_RELEASE_WORKFLOW }}
           push-branch: 'main'
           commit-message: 'update due to new release'
           force-add: 'true'
