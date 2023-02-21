@@ -44,8 +44,7 @@ body:
     attributes:
       label: "Current Behavior"
       description: Please describe the results you received
-      value: |
-        ...
+     
     validations:
       required: true
 
