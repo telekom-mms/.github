@@ -32,7 +32,5 @@ body:
     attributes:
       label: "Additional information"
       description: Please add information like mockups, code snippets, flow diagrams, etc
-      value: |
-        ...
     validations:
       required: false
