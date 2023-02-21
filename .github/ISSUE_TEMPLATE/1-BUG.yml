@@ -44,8 +44,6 @@ body:
     attributes:
       label: "Current Behavior"
       description: Please describe the results you received
-      value: |
-        ...
     validations:
       required: true
 
@@ -54,8 +52,6 @@ body:
     attributes:
       label: "Expected Behavior"
       description: Please describe the results you expect
-      value: |
-        ...
     validations:
       required: true
 
@@ -64,7 +60,5 @@ body:
     attributes:
       label: "Additional information"
       description: Please add information like the used software versions, outputs of logs, OS information, screenshots, etc. to enhance the report
-      value: |
-        ...
     validations:
       required: false
