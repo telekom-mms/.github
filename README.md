@@ -5,6 +5,70 @@ The repository uses a [functionality of GitHub](https://docs.github.com/en/commu
 
 ## Workflow Actions
 
+### GitHub Repository Settings
+
+#### Description
+
+Configures the GitHub repository settings via the API.
+
+It should only run on `push` to master/main branch and on schedule.
+
+#### Requirements
+
+The GitHub Application `MMS settings as code` must be installed in the GitHub repository. The Seetings must be specified in a json configuration file, default is `.github/settings.json`. The configuration of the settings based on the [GitHub REST API](https://docs.github.com/en/rest) documentation.
+
+| setting    | REST API Documentation                                                                                   | required basic configuration |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| repository | [Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=latest#update-a-repository) | `{ "repos": {} }`            |
+
+#### Inputs
+
+| secrets                  | description                                                                                                                                  | required |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| GH_APP_CREDENTIALS_TOKEN | password of the GitHub Application `MMS settings as code`, created by @jandd as an Organisation secret, scoped to `terraform-*` repositories | true     |
+
+| inputs   | description                    | type   | required | default               |
+| -------- | -------------------------------| ------ | -------- | --------------------- |
+| settings | path/name of the settings file | string | false    | .github/settings.json |
+
+#### Example Usage
+
+``` yaml
+name: Settings
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  call-settings:
+    uses: T-Systems-MMS/.github/.github/workflows/github_repository.yml@main
+    secrets:
+      GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
+
+```
+
+`.github/settings.json`
+
+``` json
+{
+  "repos": {
+    "description": "A Terraform module that manages the container resources from the azurerm provider.",
+    "homepage": "https://t-systems-mms.github.io",
+    "visibility": "public",
+    "default_branch": "main",
+    "topics": [
+      "terraform",
+      "azure",
+      "azurerm-container-registry"
+    ]
+  }
+}
+```
+
 ### Publish collection to Ansible Galaxy
 
 #### Description
