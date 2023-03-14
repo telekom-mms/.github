@@ -5,6 +5,44 @@ The repository uses a [functionality of GitHub](https://docs.github.com/en/commu
 
 ## Workflow Actions
 
+### GitHub Repository Settings
+
+#### Description
+
+Configures the GitHub repository settings via the API.
+
+It should only run on `push` to master/main branch and on schedule.
+
+#### Inputs
+
+| secrets                  | description                                                                                                                                     | required |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| GH_APP_CREDENTIALS_TOKEN | password of the GitHub Application `MMS settings as code`, created by @jandd as an Organisation secret, scoped to `terraform-*` repositories | true     |
+
+| inputs   | description                    | type   | required | default               |
+| -------- | -------------------------------| ------ | -------- | --------------------- |
+| settings | path/name of the settings file | string | false    | .github/settings.json |
+
+#### Example Usage
+
+``` yaml
+name: Settings
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  call-settings:
+    uses: T-Systems-MMS/.github/.github/workflows/github_repository.yml@main
+    secrets:
+      GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
+
+```
+
 ### Publish collection to Ansible Galaxy
 
 #### Description
