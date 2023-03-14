@@ -13,6 +13,10 @@ Configures the GitHub repository settings via the API.
 
 It should only run on `push` to master/main branch and on schedule.
 
+#### Requirements
+
+The GitHub Application `MMS settings as code` must be installed in the GitHub repository.
+
 #### Inputs
 
 | secrets                  | description                                                                                                                                     | required |
