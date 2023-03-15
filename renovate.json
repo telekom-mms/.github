@@ -1,8 +1,9 @@
 {
   "extends": [
-    "config:base",
-    ":disableDependencyDashboard"
+    "config:base"
   ],
+  "dependencyDashboard": true,
+  "dependencyDashboardAutoclose": true,
   "packageRules": [
     {
       "matchUpdateTypes": ["patch"],
