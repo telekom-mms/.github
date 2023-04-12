@@ -33,7 +33,7 @@ jobs:
       - name: Get API
         id: api
         run: |
-          echo repos=$(jq -e '.repos| del(.topics) | del(.collaborators)' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
+          echo repos=$(jq -e '.repos| del(.topics)' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
           echo collaborators=$(jq -e '.collaborators' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
         env:
           SETTINGS: ${{ inputs.settings }}
