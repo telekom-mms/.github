@@ -1,0 +1,9 @@
+{
+  "repos": {
+    "description": "Documentation, template files, workflows and descriptions for this Organization.",
+    "homepage": "https://telekom-mms.github.io",
+    "visibility": "public",
+    "default_branch": "main",
+    "delete_branch_on_merge": true
+  }
+}
