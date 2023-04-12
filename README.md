@@ -45,7 +45,7 @@ on:
 
 jobs:
   call-settings:
-    uses: T-Systems-MMS/.github/.github/workflows/github_repository.yml@main
+    uses: telekom-mms/.github/.github/workflows/github_repository.yml@main
     secrets:
       GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
 {
   "repos": {
     "description": "A Terraform module that manages the container resources from the azurerm provider.",
-    "homepage": "https://t-systems-mms.github.io",
+    "homepage": "https://telekom-mms.github.io",
     "visibility": "public",
     "default_branch": "main",
     "topics": [
@@ -97,7 +97,7 @@ on:
 
 jobs:
   deploy:
-    uses: T-Systems-MMS/.github/.github/workflows/ansible-galaxy-publish.yml@main
+    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
 ```
@@ -123,7 +123,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
-    uses: T-Systems-MMS/.github/.github/workflows/golang_linting.yml@main
+    uses: telekom-mms/.github/.github/workflows/golang_linting.yml@main
 ```
 
 ### Release
@@ -154,7 +154,7 @@ on:
 
 jobs:
   release:
-    uses: T-Systems-MMS/.github/.github/workflows/release.yml@main
+    uses: telekom-mms/.github/.github/workflows/release.yml@main
 ```
 
 ### Terraform Docs
@@ -179,7 +179,7 @@ on:
 
 jobs:
   readme:
-    uses: T-Systems-MMS/.github/.github/workflows/terraform_docs.yml@main
+    uses: telekom-mms/.github/.github/workflows/terraform_docs.yml@main
 ```
 
 ### Terraform Linting
@@ -202,7 +202,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
-    uses: T-Systems-MMS/.github/.github/workflows/terraform_linting.yml@main
+    uses: telekom-mms/.github/.github/workflows/terraform_linting.yml@main
 ```
 
 ### Terrascan
@@ -230,7 +230,7 @@ on: [pull_request]
 
 jobs:
   scan:
-    uses: T-Systems-MMS/.github/.github/workflows/terrascan.yml@main
+    uses: telekom-mms/.github/.github/workflows/terrascan.yml@main
     with:
       iac_type: terraform
       policy_type: all
@@ -245,7 +245,7 @@ Automated Tests for your infrastructure code.
 
 It should run on `pull_request`.
 
-The action sets up Go, logs into to your hosting platform if needed, prepares the test setup and runs the tests. For further information about the used action for the tests see [terratest-action](https://github.com/T-Systems-MMS/terratest-action).
+The action sets up Go, logs into to your hosting platform if needed, prepares the test setup and runs the tests. For further information about the used action for the tests see [terratest-action](https://github.com/telekom-mms/terratest-action).
 
 #### Inputs
 
@@ -269,7 +269,7 @@ on: [pull_request]
 
 jobs:
   test:
-    uses: T-Systems-MMS/.github/.github/workflows/terratest.yml@main
+    uses: telekom-mms/.github/.github/workflows/terratest.yml@main
     with:
       test: azure
     secrets:
