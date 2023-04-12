@@ -35,6 +35,7 @@ jobs:
         run: |
           echo repos=$(jq -e '.repos| del(.topics)' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
           echo collaborators=$(jq -e '.collaborators' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
+          echo branches=$(jq -e '.branches' ${SETTINGS} >/dev/null; echo $?) >> $GITHUB_OUTPUT
         env:
           SETTINGS: ${{ inputs.settings }}
 
@@ -55,7 +56,18 @@ jobs:
         if: (steps.api.outputs.collaborators != 1)
         run: |
           DATA=$(jq -e '.collaborators | to_entries | .[] | "\(.key).\(.value)"' ${SETTINGS} | tr -d '"')
+
           for COLLABORATOR in ${DATA}; do curl -X PUT -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer ${GITHUB_TOKEN}" --url "https://api.github.com/repos/${{ github.repository }}/collaborators/$(echo ${COLLABORATOR} | cut -d '.' -f1)" -d '{"permission":"$(echo ${COLLABORATOR} | cut -d '.' -f2)"}'; done
+        env:
+          GITHUB_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+          SETTINGS: ${{ inputs.settings }}
+
+      - name: Add repository branches Protection
+        if: (steps.api.outputs.branches != 1)
+        run: |
+          DATA=$(jq -e '.branches | to_entries | .[] | "\(.key).\(.value)"' ${SETTINGS})
+
+          for BRANCH in ${DATA}; do curl -X PUT -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer ${GITHUB_TOKEN}" --url "https://api.github.com/repos/${{ github.repository }}/branches/$(echo ${BRANCH} | cut -d '.' -f1 | tr -d '"')/protection" -d '"$(echo ${BRANCH} | cut -d '.' -f2)"'; done
         env:
           GITHUB_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
           SETTINGS: ${{ inputs.settings }}
