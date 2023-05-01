@@ -15,7 +15,7 @@ It should only run on `push` to master/main branch and on schedule.
 
 #### Requirements
 
-The GitHub Application `MMS settings as code` must be installed in the GitHub repository. The Seetings must be specified in a json configuration file, default is `.github/settings.json`. The configuration of the settings based on the [GitHub REST API](https://docs.github.com/en/rest) documentation.
+The GitHub Application `MMS settings as code` must be installed in the GitHub repository. The Settings must be specified in a json configuration file, default is `.github/settings.json`. The configuration of the settings based on the [GitHub REST API](https://docs.github.com/en/rest) documentation.
 
 | setting    | REST API Documentation                                                                                   | required basic configuration |
 | ---------- | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
