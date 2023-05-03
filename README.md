@@ -15,7 +15,7 @@ It should only run on `push` to master/main branch and on schedule.
 
 #### Requirements
 
-The GitHub Application `MMS settings as code` must be installed in the GitHub repository. The Seetings must be specified in a json configuration file, default is `.github/settings.json`. The configuration of the settings based on the [GitHub REST API](https://docs.github.com/en/rest) documentation.
+The GitHub Application `MMS settings as code` must be installed in the GitHub repository. The Settings must be specified in a json configuration file, default is `.github/settings.json`. The configuration of the settings based on the [GitHub REST API](https://docs.github.com/en/rest) documentation.
 
 | setting      | REST API Documentation                                                                                                                       | required basic configuration |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
@@ -278,4 +278,36 @@ jobs:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+```
+
+### Codespell
+
+#### Description
+
+Spellchecking that is compatible with a lot of programming languages and text formats.
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [codespell](https://github.com/codespell-project/codespell).
+#### Inputs
+
+| inputs              | description                                                       | type   | required |
+| ------------------- | ------------------------------------------------------------------| ------ | -------- |
+| ignore_words_list   | Comma-separated list of words which will be ignored by codespell. | string | false    |
+| skip                | Comma-separated list of files to skip (it accepts globs as well). | string | false    |
+
+#### Example Usage
+
+``` yaml
+name: Codespell - Spellcheck
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  codespell:
+    uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
 ```
