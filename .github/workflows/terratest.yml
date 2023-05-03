@@ -48,7 +48,7 @@ jobs:
           go-version: '1.20'
           check-latest: true
 
-      - name: Prepare ${{ matrix.example }} Unit Test Setup
+      - name: Prepare Plan Test Setup for ${{ matrix.example }}
         run: cat examples/${{ matrix.example }}_main.tf | sed 's/\<source\>.*/source = "..\/"/g' > tests/main.tf
         working-directory: .
 
@@ -61,7 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Test for ${{ matrix.example }} Setup
+      - name: Run Test for ${{ matrix.example }} Plan Setup
         uses: ./terratest-action
         with:
           test:  ${{ inputs.test }}
