@@ -278,3 +278,35 @@ jobs:
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 ```
+
+### Codespell
+
+#### Description
+
+Spellchecking that is compatible with a lot of programming languages and text formats.
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [codespell](https://github.com/codespell-project/codespell).
+#### Inputs
+
+| inputs              | description                                                       | type   | required |
+| ------------------- | ------------------------------------------------------------------| ------ | -------- |
+| ignore_words_list   | Comma-separated list of words which will be ignored by codespell. | string | false    |
+| skip                | Comma-separated list of files to skip (it accepts globs as well). | string | false    |
+
+#### Example Usage
+
+``` yaml
+name: Codespell - Spellcheck
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  codespell:
+    uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
+```
