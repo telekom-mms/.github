@@ -49,7 +49,10 @@ jobs:
           check-latest: true
 
       - name: Prepare Plan Test Setup for ${{ matrix.example }}
-        run: sed 's/\<source\>.*/source = "..\/"/g' examples/${{ matrix.example }}_main.tf > tests/main.tf
+        run: |
+          cat examples/${{ matrix.example }}_main.tf > tests/main.tf
+          MODULE=$(sed -n "/module.*$(basename $(pwd) | awk -F '-' '{print $NF}')/{ n; p }" tests/main.tf | cut -d '=' -f2 | sed 's/\//\\\//g')
+          sed "s/${MODULE}/..\//g" tests/main.tf
         working-directory: .
 
       - name: Checkout Github Action
@@ -72,7 +75,10 @@ jobs:
           azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Prepare Apply Test Setup
-        run: sed 's/\<source\>.*/source = "..\/"/g' examples/apply_main.tf > tests/main.tf
+        run: |
+          cat examples/apply_main.tf > tests/main.tf
+          MODULE=$(sed -n "/module.*$(basename $(pwd) | awk -F '-' '{print $NF}')/{ n; p }" tests/main.tf | cut -d '=' -f2 | sed 's/\//\\\//g')
+          sed "s/${MODULE}/..\//g" tests/main.tf
         working-directory: .
 
       - name: Run Test for Apply Setup
