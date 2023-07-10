@@ -311,7 +311,6 @@ jobs:
   codespell:
     uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
 ```
-
 ### ansible-lint 
 
 #### Description
@@ -339,4 +338,37 @@ on:
 jobs:
   codespell:
     uses: "telekom-mms/.github/.github/workflows/ansible-lint.yml@main"
+```
+
+### Prettier-md
+
+#### Description
+
+* An opinionated code formatter
+* Supports many languages
+* Integrates with most editors
+* Has few options
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [prettier](https://prettier.io/)
+
+#### Inputs
+
+none
+
+#### Example Usage
+
+``` yaml
+name: Prettify Markdown
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  prettier-md:
+    uses: "telekom-mms/.github/.github/workflows/prettier-md.yml@main"
 ```
