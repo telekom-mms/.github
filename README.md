@@ -311,3 +311,32 @@ jobs:
   codespell:
     uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
 ```
+
+### ansible-lint 
+
+#### Description
+
+Run ansible-lint against your code.
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [ansible-lint](https://github.com/ansible/ansible-lint)
+#### Inputs
+
+none
+
+#### Example Usage
+
+``` yaml
+name: ansible-lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  codespell:
+    uses: "telekom-mms/.github/.github/workflows/ansible-lint.yml@main"
+```
