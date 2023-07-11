@@ -103,6 +103,38 @@ jobs:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
 ```
 
+### Publish role to Ansible Galaxy
+
+#### Description
+
+Publishes an Ansible role to Ansible Galaxy.
+
+It should only run when a release is published.
+
+The action builds and deploys the role.
+
+#### Inputs
+
+| secrets        | description                                                                     | required |
+| -------------- | ------------------------------------------------------------------------------- | -------- |
+| GALAXY_API_KEY | the API key to deploy to Galaxy, created by @rndmh3ro as an Organisation secret | true     |
+
+#### Example Usage
+
+``` yaml
+name: Publish role to Ansible Galaxy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-role-publish.yml@main
+    secrets:
+      GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+```
 ### Golang Linting
 
 #### Description
