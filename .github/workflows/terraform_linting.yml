@@ -20,3 +20,9 @@ jobs:
         uses: dflook/terraform-validate@v1
         with:
           path: .
+
+      - name: Setup tflint
+        uses: terraform-linters/setup-tflint@v3
+
+      - name: tflint
+        run: tflint --recursive
