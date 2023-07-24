@@ -46,6 +46,7 @@ on:
 
 jobs:
   call-settings:
+    # docs: https://github.com/telekom-mms/.github#github-repository-settings
     uses: telekom-mms/.github/.github/workflows/github_repository.yml@main
     secrets:
       GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
@@ -98,6 +99,7 @@ on:
 
 jobs:
   deploy:
+    # docs: https://github.com/telekom-mms/.github#publish-collection-to-ansible-galaxy
     uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
@@ -131,6 +133,7 @@ on:
 
 jobs:
   deploy:
+    # docs: https://github.com/telekom-mms/.github#publish-role-to-ansible-galaxy
     uses: telekom-mms/.github/.github/workflows/ansible-galaxy-role-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
@@ -156,6 +159,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
+    # docs: https://github.com/telekom-mms/.github#golang-linting
     uses: telekom-mms/.github/.github/workflows/golang_linting.yml@main
 ```
 
@@ -187,6 +191,7 @@ on:
 
 jobs:
   release:
+    # docs: https://github.com/telekom-mms/.github#release
     uses: telekom-mms/.github/.github/workflows/release.yml@main
 ```
 
@@ -212,6 +217,7 @@ on:
 
 jobs:
   readme:
+    # docs: https://github.com/telekom-mms/.github#terraform-docs
     uses: telekom-mms/.github/.github/workflows/terraform_docs.yml@main
 ```
 
@@ -235,6 +241,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
+    # docs: https://github.com/telekom-mms/.github#terraform-linting
     uses: telekom-mms/.github/.github/workflows/terraform_linting.yml@main
 ```
 
@@ -263,6 +270,7 @@ on: [pull_request]
 
 jobs:
   scan:
+    # docs: https://github.com/telekom-mms/.github#terrascan
     uses: telekom-mms/.github/.github/workflows/terrascan.yml@main
     with:
       iac_type: terraform
@@ -302,6 +310,7 @@ on: [pull_request]
 
 jobs:
   test:
+    # docs: https://github.com/telekom-mms/.github#terratest
     uses: telekom-mms/.github/.github/workflows/terratest.yml@main
     with:
       test: azure
@@ -341,6 +350,7 @@ on:
 
 jobs:
   codespell:
+    # docs: https://github.com/telekom-mms/.github#codespell
     uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
 ```
 ### ansible-lint 
@@ -369,6 +379,7 @@ on:
 
 jobs:
   codespell:
+    # docs: https://github.com/telekom-mms/.github#ansible-lint
     uses: "telekom-mms/.github/.github/workflows/ansible-lint.yml@main"
 ```
 
@@ -402,5 +413,6 @@ on:
 
 jobs:
   prettier-md:
+    # docs: https://github.com/telekom-mms/.github#prettier-md
     uses: "telekom-mms/.github/.github/workflows/prettier-md.yml@main"
 ```
