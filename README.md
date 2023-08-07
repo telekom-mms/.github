@@ -167,11 +167,12 @@ jobs:
 
 #### Description
 
-Publishes a new Release on GitHub.
+Publishes a new *draft* release on GitHub.
 
 It should only run on `push` to master/main branch.
 
-The action builds a new tag and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
+The action creates a new *draft* release and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
+The user then has to publish the new release.
 
 #### Inputs
 
