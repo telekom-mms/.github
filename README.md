@@ -46,6 +46,7 @@ on:
 
 jobs:
   call-settings:
+    # docs: https://github.com/telekom-mms/.github#github-repository-settings
     uses: telekom-mms/.github/.github/workflows/github_repository.yml@main
     secrets:
       GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
@@ -98,11 +99,45 @@ on:
 
 jobs:
   deploy:
+    # docs: https://github.com/telekom-mms/.github#publish-collection-to-ansible-galaxy
     uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
 ```
 
+### Publish role to Ansible Galaxy
+
+#### Description
+
+Publishes an Ansible role to Ansible Galaxy.
+
+It should only run when a release is published.
+
+The action builds and deploys the role.
+
+#### Inputs
+
+| secrets        | description                                                                     | required |
+| -------------- | ------------------------------------------------------------------------------- | -------- |
+| GALAXY_API_KEY | the API key to deploy to Galaxy, created by @rndmh3ro as an Organisation secret | true     |
+
+#### Example Usage
+
+``` yaml
+name: Publish role to Ansible Galaxy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    # docs: https://github.com/telekom-mms/.github#publish-role-to-ansible-galaxy
+    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-role-publish.yml@main
+    secrets:
+      GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+```
 ### Golang Linting
 
 #### Description
@@ -124,6 +159,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
+    # docs: https://github.com/telekom-mms/.github#golang-linting
     uses: telekom-mms/.github/.github/workflows/golang_linting.yml@main
 ```
 
@@ -131,11 +167,12 @@ jobs:
 
 #### Description
 
-Publishes a new Release on GitHub.
+Publishes a new *draft* release on GitHub.
 
 It should only run on `push` to master/main branch.
 
-The action builds a new tag and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
+The action creates a new *draft* release and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
+The user then has to publish the new release.
 
 #### Inputs
 
@@ -155,6 +192,7 @@ on:
 
 jobs:
   release:
+    # docs: https://github.com/telekom-mms/.github#release
     uses: telekom-mms/.github/.github/workflows/release.yml@main
 ```
 
@@ -180,6 +218,7 @@ on:
 
 jobs:
   readme:
+    # docs: https://github.com/telekom-mms/.github#terraform-docs
     uses: telekom-mms/.github/.github/workflows/terraform_docs.yml@main
 ```
 
@@ -203,6 +242,7 @@ on: [push, pull_request]
 
 jobs:
   linting:
+    # docs: https://github.com/telekom-mms/.github#terraform-linting
     uses: telekom-mms/.github/.github/workflows/terraform_linting.yml@main
 ```
 
@@ -231,6 +271,7 @@ on: [pull_request]
 
 jobs:
   scan:
+    # docs: https://github.com/telekom-mms/.github#terrascan
     uses: telekom-mms/.github/.github/workflows/terrascan.yml@main
     with:
       iac_type: terraform
@@ -270,6 +311,7 @@ on: [pull_request]
 
 jobs:
   test:
+    # docs: https://github.com/telekom-mms/.github#terratest
     uses: telekom-mms/.github/.github/workflows/terratest.yml@main
     with:
       test: azure
@@ -309,5 +351,69 @@ on:
 
 jobs:
   codespell:
+    # docs: https://github.com/telekom-mms/.github#codespell
     uses: "telekom-mms/.github/.github/workflows/codespell.yml@main"
+```
+### ansible-lint 
+
+#### Description
+
+Run ansible-lint against your code.
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [ansible-lint](https://github.com/ansible/ansible-lint)
+#### Inputs
+
+none
+
+#### Example Usage
+
+``` yaml
+name: ansible-lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  codespell:
+    # docs: https://github.com/telekom-mms/.github#ansible-lint
+    uses: "telekom-mms/.github/.github/workflows/ansible-lint.yml@main"
+```
+
+### Prettier-md
+
+#### Description
+
+* An opinionated code formatter
+* Supports many languages
+* Integrates with most editors
+* Has few options
+
+It should run on `push` and `pull_request`.
+
+Integrates the tool [prettier](https://prettier.io/)
+
+#### Inputs
+
+none
+
+#### Example Usage
+
+``` yaml
+name: Prettify Markdown
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  prettier-md:
+    # docs: https://github.com/telekom-mms/.github#prettier-md
+    uses: "telekom-mms/.github/.github/workflows/prettier-md.yml@main"
 ```

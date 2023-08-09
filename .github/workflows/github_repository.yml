@@ -67,7 +67,7 @@ jobs:
         run: |
           DATA=$(jq -e '.branches | to_entries | .[] | "\(.key).\(.value)"' ${SETTINGS})
 
-          for BRANCH in ${DATA}; do curl -X PUT -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer ${GITHUB_TOKEN}" --url "https://api.github.com/repos/${{ github.repository }}/branches/$(echo ${BRANCH} | cut -d '.' -f1 | tr -d '"')/protection" -d '"$(echo ${BRANCH} | cut -d '.' -f2)"'; done
+          for BRANCH_DATA in ${DATA}; do BRANCH=$(echo ${BRANCH_DATA} | cut -d '.' -f1) && JSON_DATA=$(echo ${BRANCH_DATA//\\} | cut -d '.' -f2) && curl -X PUT -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer ${GITHUB_TOKEN}" --url "https://api.github.com/repos/${{ github.repository }}/branches/${BRANCH:1}/protection" -d "${JSON_DATA:0:-1}"; done
         env:
           GITHUB_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
           SETTINGS: ${{ inputs.settings }}
