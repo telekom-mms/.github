@@ -1,4 +1,4 @@
-![banner](banner.png)
+![banner](/profile/banner.png)
 
 Welcome to our space on GitHub where we house all our open-source projects. Feel free to explore what we have created. If you'd like to contribute or have discovered any issues, don't hesitate to open an issue or pull request (PR).
 
