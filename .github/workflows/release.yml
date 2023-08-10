@@ -13,22 +13,22 @@ jobs:
     runs-on: ubuntu-latest
     name: create release draft
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.5.3
 
       - name: 'Get Previous tag'
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        uses: "WyriHaximus/github-action-get-previous-tag@v1.3.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: calculate next version
         id: version
-        uses: patrickjahns/version-drafter-action@v1
+        uses: patrickjahns/version-drafter-action@v1.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@v1
+        uses: charmixer/auto-changelog-action@v1.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
@@ -47,8 +47,8 @@ jobs:
           commit-message: 'update due to new release'
           force-add: 'true'
           files: CHANGELOG.md ${{ inputs.files }} # empty string if not set
-          name: T-Systems MMS
-          email: frage@t-systems-mms.com
+          name: Deutsche Telekom MMS
+          email: mms@telekom.de
 
       # do a second checkout to prevent race situation
       # changelog gets updated but action works on old commit id
