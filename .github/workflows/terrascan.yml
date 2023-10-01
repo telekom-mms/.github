@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - name: Terrascan
-        uses: tenable/terrascan-action@v1
+        uses: tenable/terrascan-action@3a6e87da8e244513bd77b631e624552643f794c6 # v1
         with:
           iac_type: ${{ inputs.iac_type }}
           policy_type: ${{ inputs.policy_type }}

@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - name: check format
-        uses: dflook/terraform-fmt-check@v1
+        uses: dflook/terraform-fmt-check@e2336a7181cca8d4f659f5821e76b917214f322a # v1
         with:
           path: .
 
       - name: validate
-        uses: dflook/terraform-validate@v1
+        uses: dflook/terraform-validate@433dd249ad921c19245cf361c67a57f485e2ae0b # v1
         with:
           path: .
 
