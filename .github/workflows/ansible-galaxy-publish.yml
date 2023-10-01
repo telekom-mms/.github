@@ -12,28 +12,28 @@ jobs:
   deploy_to_galaxy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       # deploy the collection first, because if it fails, we don't want
       # to update the galaxy.yml
       - name: Deploy the collection
-        uses: artis3n/ansible_galaxy_collection@v2
+        uses: artis3n/ansible_galaxy_collection@3e6dee0cb318af75661c5a2f6c484416b413aa07 # v2
         with:
           api_key: ${{ secrets.GALAXY_API_KEY }}
           galaxy_version: ${{ github.event.release.tag_name }}
 
       # checkout master instead of the release-tag so we can push the galaxy.yml
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           ref: master
 
       - name: update galaxy.yml with new version
-        uses: mikefarah/yq@v4.35.2
+        uses: mikefarah/yq@a198f72367ce9da70b564a2cc25399de8e27bf37 # v4.35.2
         with:
           cmd: yq -i '.version = "${{ github.event.release.tag_name }}"' 'galaxy.yml'
 
       - name: push galaxy.yml
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
