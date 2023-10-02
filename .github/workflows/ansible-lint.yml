@@ -12,4 +12,4 @@ jobs:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
   
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@55b8b667587295d4fdbbd2f9c90a84455f6ece99 # v6.20.2
+        uses: ansible/ansible-lint@82ab7c447614837c94fa8a9b5f667b8662aa055f # v6.20.3
