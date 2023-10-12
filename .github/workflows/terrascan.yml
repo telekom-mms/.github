@@ -9,6 +9,11 @@ on:
         type: string
         default: terraform
         description: e.g. helm, k8s, kustomize, terraform - to see all supported types look at https://github.com/tenable/terrascan-action#iac_type
+      iac_dir:
+        required: false
+        type: string
+        default: tests
+        description: path to directory to scan
       policy_type:
         required: false
         type: string
@@ -32,6 +37,7 @@ jobs:
         uses: tenable/terrascan-action@3a6e87da8e244513bd77b631e624552643f794c6 # v1
         with:
           iac_type: ${{ inputs.iac_type }}
+          iac_dir: ${{ inputs.iac_dir }}
           policy_type: ${{ inputs.policy_type }}
           non_recursive: ${{ inputs.non_recursive }}
           verbose: true
