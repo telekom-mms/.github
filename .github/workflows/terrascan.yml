@@ -12,7 +12,7 @@ on:
       iac_dir:
         required: false
         type: string
-        default: ./tests
+        default: ./
         description: path to directory to scan
       policy_type:
         required: false
