@@ -49,6 +49,7 @@ jobs:
         id: githubAppAuth
         run: |
           TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }})"
+          echo "::add-mask::$TOKEN"
           echo token=${TOKEN} >> $GITHUB_OUTPUT
 
       - name: update and push due to new release
