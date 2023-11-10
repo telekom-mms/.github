@@ -174,6 +174,9 @@ It should only run on `push` to master/main branch.
 The action creates a new *draft* release and updates the changelog. Furthermore it adds defined files (e.g. created in other workflows) to the release.
 The user then has to publish the new release.
 
+The push step of this action used the [Github app](https://github.com/organizations/telekom-mms/settings/installations) "MMS branch protection as code"
+to push to the main branch, bypassing branch protection rules.
+
 #### Inputs
 
 | inputs | description                                   | type   | required |
