@@ -175,13 +175,17 @@ The action creates a new *draft* release and updates the changelog. Furthermore 
 The user then has to publish the new release.
 
 The push step of this action used the [Github app](https://github.com/organizations/telekom-mms/settings/installations) "MMS branch protection as code"
-to push to the main branch, bypassing branch protection rules.
+to push to the main branch, bypassing branch protection rules. Make sure to pass the secret to the job (see the example).
 
 #### Inputs
 
 | inputs | description                                   | type   | required |
 | ------ | --------------------------------------------- | ------ | -------- |
 | files  | files which should be included in the release | string | false    |
+
+| secrets                        | description                                                                                                                                                                                          | required |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| GH_BRANCH_PROTECTION_APP_TOKEN | password of the GitHub Application `MMS branch protection as code`, created by @jandd as an Organisation secret, scoped to specific repositories. Pass it exactly as described in the example below. | true     |
 
 #### Example Usage
 
@@ -196,7 +200,10 @@ on:
 jobs:
   release:
     # docs: https://github.com/telekom-mms/.github#release
+    if: github.repository != '$TEMPLATE_REPOSITORY'
     uses: telekom-mms/.github/.github/workflows/release.yml@main
+    secrets:
+      GH_BRANCH_PROTECTION_APP_TOKEN: ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }}
 ```
 
 ### Terraform Docs
