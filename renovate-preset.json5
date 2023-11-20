@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "config:recommended",
+    "config:best-practices"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardAutoclose": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ]
+}
