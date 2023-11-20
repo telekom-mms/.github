@@ -83,9 +83,10 @@ The action builds and deploys the collection. It then checks out the main-branch
 
 #### Inputs
 
-| secrets        | description                                                                     | required |
-| -------------- | ------------------------------------------------------------------------------- | -------- |
-| GALAXY_API_KEY | the API key to deploy to Galaxy, created by @rndmh3ro as an Organisation secret | true     |
+| secrets                  | description                                                                                                                                  | required |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| GALAXY_API_KEY           | the API key to deploy to Galaxy, created by @rndmh3ro as an Organisation secret                                                              | true     |
+| GH_APP_CREDENTIALS_TOKEN | password of the GitHub Application `MMS settings as code`, created by @jandd as an Organisation secret, scoped to `terraform-*` repositories | true     |
 
 #### Example Usage
 
@@ -103,6 +104,7 @@ jobs:
     uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+      GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
 ```
 
 ### Publish role to Ansible Galaxy
