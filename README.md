@@ -140,15 +140,42 @@ jobs:
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
 ```
+
+### Python Linting
+
+#### Description
+
+Lint Python code with poetry and black.
+
+It should run on `push` and `pull_request`.
+
+The action sets up Python and Poetry, installs required dependencies and lints the code.
+
+#### Inputs
+
+#### Example Usage
+
+``` yaml
+name: Linting
+
+on: [push, pull_request]
+
+jobs:
+  linting:
+    # docs: https://github.com/telekom-mms/.github#python-linting
+    uses: telekom-mms/.github/.github/workflows/python_linting.yml@main
+```
+
+
 ### Golang Linting
 
 #### Description
 
-Linting Golang code.
+Lint Golang code.
 
 It should run on `push` and `pull_request`.
 
-The action sets up Go, installs needed modules and lints the code.
+The action sets up Go, installs required modules and lints the code.
 
 #### Inputs
 
