@@ -4,7 +4,6 @@
     "config:best-practices"
   ],
   "dependencyDashboard": true,
-  "dependencyDashboardAutoclose": true,
   "packageRules": [
     {
       "matchUpdateTypes": [
