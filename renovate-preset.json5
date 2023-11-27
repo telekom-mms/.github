@@ -10,7 +10,8 @@
         "patch",
         "minor",
         "pin",
-        "digest"
+        "digest",
+        "pinDigest"
       ],
       "automerge": true,
       "automergeType": "branch"
