@@ -77,7 +77,7 @@ jobs:
 
 Publishes an Ansible collection to Ansible Galaxy.
 
-It should only run when a release is published.
+It should only run when a release is released (not published, as this includes pre-releases).
 
 The action builds and deploys the collection. It then checks out the main-branch and updates the `galaxy.yml` with the tag and finally pushes the `galaxy.yml`
 
@@ -96,7 +96,8 @@ name: Publish collection to Ansible Galaxy
 on:
   release:
     types:
-      - published
+      # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release
+      - released
 
 jobs:
   deploy:
@@ -113,7 +114,7 @@ jobs:
 
 Publishes an Ansible role to Ansible Galaxy.
 
-It should only run when a release is published.
+It should only run when a release is released (not published, as this includes pre-releases).
 
 The action builds and deploys the role.
 
@@ -131,7 +132,8 @@ name: Publish role to Ansible Galaxy
 on:
   release:
     types:
-      - published
+      # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release
+      - released
 
 jobs:
   deploy:
