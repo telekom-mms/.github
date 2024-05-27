@@ -38,7 +38,7 @@ jobs:
         uses: charmixer/auto-changelog-action@b25e89c9410e03189f0d48b02b3a8caad6e78015 # v1.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release_branch: ${{ GITHUB_REF_NAME }}
+          release_branch: ${{ env.GITHUB_REF_NAME }}
           future_release: ${{ steps.version.outputs.next-version }}
 
       - name: download files
