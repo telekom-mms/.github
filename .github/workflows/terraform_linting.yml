@@ -17,7 +17,7 @@ jobs:
           path: .
 
       - name: validate
-        uses: dflook/terraform-validate@4a73778c8a9a037688cb8518dfb766f8a77fae72 # v1
+        uses: dflook/terraform-validate@5e22e449923d40905db0b3ca67ebc5787e8b2dee # v1
         with:
           path: .
 
