@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Setup jq
-        uses: dcarbone/install-jq-action@f0e10f46ff84f4d32178b4b76e1ef180b16f82c3 # v3.1.1
+        uses: dcarbone/install-jq-action@b7ef57d46ece78760b4019dbc4080a1ba2a40b45 # v3.2.0
 
       - name: Obtain a GitHub App Installation Access Token
         id: githubAppAuth
