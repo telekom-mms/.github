@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
       - name: check format
-        uses: dflook/terraform-fmt-check@eae6e6f9fd083ea1f4af2323d8feeb5feed96e1d # v1
+        uses: dflook/terraform-fmt-check@10eaa13fa61437aa51be2d12fafe95f152e3512d # v2
         with:
           path: .
 
