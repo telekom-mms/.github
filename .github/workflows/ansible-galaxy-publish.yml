@@ -36,7 +36,7 @@ jobs:
           ref: main
 
       - name: update galaxy.yml with new version
-        uses: mikefarah/yq@45be35c06387d692bb6bf689919919e0e32e796f # v4.49.1
+        uses: mikefarah/yq@7ccaf8e700ce99eb3f0f6cef7f5930a0b3c827cd # v4.49.2
         with:
           cmd: yq -i '.version = "${{ github.event.release.tag_name }}"' 'galaxy.yml'
 
