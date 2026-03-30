@@ -1,0 +1,33 @@
+---
+name: Terraform Registry Publish
+
+on:
+  workflow_call:
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+    name: publish release draft
+    permissions:
+      contents: write
+    steps:
+      - name: Publish latest draft release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DRAFT_TAG=$(gh release list \
+            --repo "${{ github.repository }}" \
+            --limit 10 \
+            --json tagName,isDraft \
+            | jq -r '.[] | select(.isDraft == true) | .tagName' \
+            | head -1)
+
+          if [ -z "$DRAFT_TAG" ]; then
+            echo "No draft release found, skipping."
+            exit 0
+          fi
+
+          echo "Publishing release: $DRAFT_TAG"
+          gh release edit "$DRAFT_TAG" \
+            --draft=false \
+            --repo "${{ github.repository }}"
