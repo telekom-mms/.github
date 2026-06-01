@@ -7,6 +7,9 @@ on:
       GALAXY_API_KEY:
         description: 'The API-key to publish to Ansible Galaxy'
         required: true
+      GH_BRANCH_PROTECTION_APP_TOKEN:
+        description: 'The token used to push as a Github-app. Globally set in the organization'
+        required: true
 
 jobs:
   deploy_to_galaxy:
