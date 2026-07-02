@@ -10,6 +10,6 @@ on:
 
 jobs:
   call-settings:
-    uses: telekom-mms/.github/.github/workflows/github_repository.yml@9a15752d12af9658b227d41de770f00ec74fcc88 # main
+    uses: telekom-mms/.github/.github/workflows/github_repository.yml@52ec86c3c743507cc7cb9cbf87724338f0170c99 # main
     secrets:
       GH_APP_CREDENTIALS_TOKEN: ${{ secrets.GH_APP_CREDENTIALS_TOKEN }}
