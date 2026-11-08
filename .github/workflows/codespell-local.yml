@@ -8,4 +8,4 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   codespell:
-    uses: "telekom-mms/.github/.github/workflows/codespell.yml@0973d40086e8f2e2c762fdfcabda116fe861ba9f" # main
+    uses: "telekom-mms/.github/.github/workflows/codespell.yml@cdee8a6bc2515426290df61df31f63d1c453a89e" # main
